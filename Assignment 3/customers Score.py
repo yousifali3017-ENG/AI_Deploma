@@ -46,22 +46,42 @@ while True:
     print("0. Exit")
     print("============================")
 
-    choice = input("Enter your choice: ")
+    Choice = input("Enter your choice: ")
 
-    if choice == "1":
+    if Choice == "1":
         print()
         print("========== CUSTOMER RISK REPORT ==========")
-        print("Name       Score   Risk")
-        print("------------------------------------------")
-
-
+        print(f"{'Name':<10} {'Score':<6} {'Risk'}")
+        print("-" * 26)
         for customer, Score, Risk in zip(Customers, Scores, Risk_Levels):
-            print(f"{customer}      {Score:<10}{Risk}")
-
+            print(f"{customer:<10} {Score:<6} {Risk}")
+        
         print("\n============== SUMMARY ==============")
         print(f"High Risk: {High}")
         print(f"Medium Risk: {Medium}")
         print(f"Low Risk: {Low}")
         print(f"Average Score: {Average:.2f}\n")
         print(f"Best Customer: {Best_Customer} ({Best_Score})")
-        print(f"Worst Customer: {Worst_Customer} ({Worst_Score})")    
+        print(f"Worst Customer: {Worst_Customer} ({Worst_Score})")
+        
+
+    elif Choice == "2":
+        Search_Name = input("Enter customer name: ")
+
+        for customer, score, Risk in zip(Customers, Scores, Risk_Levels):
+            if customer == Search_Name:
+                print("Name:", customer)
+                print("Score:", score)
+                print("Risk:", Risk)
+                break
+
+        if customer != Search_Name :
+            print("Customer not found")
+                
+       
+    elif Choice == "0":
+            print("Goodbye")
+            break
+
+    else:
+        print("Wrong Choice")
